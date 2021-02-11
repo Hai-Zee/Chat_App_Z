@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "843434393144",
+    "project_id": "chatappzeeshan",
+    "storage_bucket": "chatappzeeshan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843434393144:android:94917d7c906550500030cd",
+        "android_client_info": {
+          "package_name": "com.example.chatappzeeshan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843434393144-c8c5pm15r69ig1ale8a092mr7hje4r3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUF0m3djpdbVlZiyqjC__PL3EhsWPcpJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843434393144-c8c5pm15r69ig1ale8a092mr7hje4r3b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
