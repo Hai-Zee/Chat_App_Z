@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -84,57 +85,37 @@ class MainViewFragment : Fragment() {
     }
 
 
-    override fun onStart() {
-        super.onStart()
-
-//        val map = HashMap<String, Any>()
-//        map["status"] = true
+//    override fun onStart() {
+//        super.onStart()
+//
 //        userDao.userCollection
 //            .document(userDao.getCurrentUser().userId)
-//            .update(map)
-        userDao.userCollection
-            .document(userDao.getCurrentUser().userId)
-            .update("status", true)
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-
-//        val map = HashMap<String, Any>()
-//        map["status"] = true
+//            .update("status", true)
+//    }
+//
+//
+//    override fun onResume() {
+//        super.onResume()
+//
 //        userDao.userCollection
 //            .document(userDao.getCurrentUser().userId)
-//            .update(map)
-        userDao.userCollection
-            .document(userDao.getCurrentUser().userId)
-            .update("status", true)
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-//        val map = HashMap<String, Any>()
-//        map["status"] = false
+//            .update("status", true)
+//    }
+//
+//    override fun onPause() {
+//        super.onPause()
+//
 //        userDao.userCollection
 //            .document(userDao.getCurrentUser().userId)
-//            .update(map)
-        userDao.userCollection
-            .document(userDao.getCurrentUser().userId)
-            .update("status", false)
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-//        val map = HashMap<String, Any>()
-//        map["status"] = false
+//            .update("status", false)
+//    }
+//
+//    override fun onStop() {
+//        super.onStop()
+//
 //        userDao.userCollection
 //            .document(userDao.getCurrentUser().userId)
-//            .update(map)
-        userDao.userCollection
-            .document(userDao.getCurrentUser().userId)
-            .update("status", false)
-    }
+//            .update("status", false)
+//    }
 
 }

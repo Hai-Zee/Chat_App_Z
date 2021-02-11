@@ -37,8 +37,9 @@
             android:id="@+id/user_status"
             android:layout_width="16dp"
             android:layout_height="16dp"
+            android:visibility="invisible"
             android:setStatus="@{user.status}"
-            tools:src="@drawable/status_image_circular"
+            android:src="@drawable/status_image_circular"
             app:layout_constraintEnd_toEndOf="@id/user_image"
             app:layout_constraintBottom_toBottomOf="@id/user_image" />
 

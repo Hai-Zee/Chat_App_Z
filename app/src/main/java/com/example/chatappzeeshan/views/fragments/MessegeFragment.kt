@@ -86,10 +86,10 @@ class MessegeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        userDao.userCollection
-            .document(userDao.getCurrentUser().userId)
-            .update("status", true)
-
+//        userDao.userCollection
+//            .document(userDao.getCurrentUser().userId)
+//            .update("status", true)
+//
 //        fragmentMessegeBinding.usersData = receiverUser
 
         //  Getting chats by observing mutableChatLiveData
@@ -97,35 +97,26 @@ class MessegeFragment : Fragment() {
             messageAdapter = MessageAdapter(it, receiverUser)
             messageAdapter.startListening()
             fragmentMessegeBinding.messageRecyclerView.adapter = messageAdapter
+            fragmentMessegeBinding.messageRecyclerView.scrollToPosition(messageAdapter.itemCount-1)
         })
     }
 
 
-    override fun onResume() {
-        super.onResume()
-
-        userDao.userCollection
-            .document(userDao.getCurrentUser().userId)
-            .update("status", true)
-
+//    override fun onResume() {
+//        super.onResume()
+//
+//        userDao.userCollection
+//            .document(userDao.getCurrentUser().userId)
+//            .update("status", true)
+//
 //        fragmentMessegeBinding.usersData = receiverUser
-    }
+//    }
 
-    override fun onPause() {
-        super.onPause()
 
-        userDao.userCollection
-            .document(userDao.getCurrentUser().userId)
-            .update("status", false)
-    }
 
     override fun onStop() {
         super.onStop()
         messageAdapter.stopListening()
-
-        userDao.userCollection
-            .document(userDao.getCurrentUser().userId)
-            .update("status", false)
     }
 
 }

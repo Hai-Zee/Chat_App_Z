@@ -36,8 +36,10 @@ class ChatFragment : Fragment(), UsersAdapter.UsersItemListener {
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
+        myViewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
 
         fragmentChatBinding.chatFragmentRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+        fragmentChatBinding.chatFragmentRecyclerview.setHasFixedSize(true)
 
 //        fragmentChatBinding.swipeRefreshLayout.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener{
 //            override fun onRefresh() {
@@ -50,7 +52,6 @@ class ChatFragment : Fragment(), UsersAdapter.UsersItemListener {
 
     override fun onStart() {
         super.onStart()
-        myViewModel = ViewModelProvider(requireActivity()).get(MyViewModel::class.java)
         myViewModel.getChatList().observe(viewLifecycleOwner, Observer {
             usersAdapter = UsersAdapter(it, this)
             usersAdapter.startListening()
@@ -58,15 +59,6 @@ class ChatFragment : Fragment(), UsersAdapter.UsersItemListener {
         })
     }
 
-    override fun onResume() {
-        super.onResume()
-//        fragmentChatBinding.swipeRefreshLayout.isRefreshing = true
-    }
-//
-//    override fun onPause() {
-//        super.onPause()
-//        usersAdapter.stopListening()
-//    }
 
     override fun onStop() {
         super.onStop()

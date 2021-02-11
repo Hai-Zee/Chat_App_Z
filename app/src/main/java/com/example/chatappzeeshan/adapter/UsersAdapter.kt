@@ -1,6 +1,7 @@
 package com.example.chatappzeeshan.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatappzeeshan.databinding.UsersCustomViewBinding
@@ -10,7 +11,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class UsersAdapter(options: FirestoreRecyclerOptions<UsersData>, val usersItemListener: UsersItemListener) : FirestoreRecyclerAdapter<UsersData, UsersAdapter.ViewHolder>(options) {
+class UsersAdapter(options: FirestoreRecyclerOptions<UsersData>, val usersItemListener: UsersItemListener)
+    : FirestoreRecyclerAdapter<UsersData, UsersAdapter.ViewHolder>(options) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -20,15 +22,18 @@ class UsersAdapter(options: FirestoreRecyclerOptions<UsersData>, val usersItemLi
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, model: UsersData) {
-        val firebaseUser = Firebase.auth.currentUser
-        val currentUser = UsersData(firebaseUser?.displayName!!, firebaseUser.uid, firebaseUser.photoUrl.toString())
 
-        if ( !currentUser.equals(model)){
+        if ( Firebase.auth.currentUser?.uid != model.userId){
             holder.usersCustomViewBinding.user = model
+        } else {
+            holder.usersCustomViewBinding.root.visibility = View.GONE
+            holder.usersCustomViewBinding.root.layoutParams.height = 0
+            return
         }
     }
 
-    class ViewHolder(val usersCustomViewBinding: UsersCustomViewBinding) : RecyclerView.ViewHolder(usersCustomViewBinding.root)
+    class ViewHolder(val usersCustomViewBinding: UsersCustomViewBinding)
+        : RecyclerView.ViewHolder(usersCustomViewBinding.root)
 
     interface UsersItemListener{
         fun onUserClicked(user : UsersData)

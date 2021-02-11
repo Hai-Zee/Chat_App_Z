@@ -51,15 +51,6 @@ class UsersFragment : Fragment(), UsersAdapter.UsersItemListener {
         })
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
-//    override fun onPause() {
-//        super.onPause()
-//        usersAdapter.stopListening()
-//    }
-
     override fun onStop() {
         super.onStop()
         usersAdapter.stopListening()

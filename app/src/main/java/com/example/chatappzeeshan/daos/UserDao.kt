@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 class UserDao {
     val firebaseFirestore = FirebaseFirestore.getInstance()
     val userCollection = firebaseFirestore.collection("Users")
-    private val firebaseUser = Firebase.auth.currentUser!!
+    val firebaseUser = Firebase.auth.currentUser!!
     private var currentUser = UsersData(firebaseUser.displayName!!, firebaseUser.uid, firebaseUser.photoUrl.toString())
 
     fun addUsers(user: UsersData) {

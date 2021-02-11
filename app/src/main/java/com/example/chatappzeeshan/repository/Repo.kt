@@ -5,6 +5,7 @@ import com.example.chatappzeeshan.daos.UserDao
 import com.example.chatappzeeshan.modal.Chat
 import com.example.chatappzeeshan.modal.UsersData
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

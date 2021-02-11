@@ -16,10 +16,13 @@ class UsersData(
         @JvmStatic
         @BindingAdapter("android:setImageFromUrl")
         fun loadImage(imageView: ImageView, url: String?) {
-            Glide.with(imageView.context)
-                .load(url)
-                .circleCrop()
-                .into(imageView)
+
+            url?.let {
+                Glide.with(imageView.context)
+                    .load(url)
+                    .circleCrop()
+                    .into(imageView)
+            }
         }
 
         @BindingAdapter("android:setStatus")
@@ -28,7 +31,7 @@ class UsersData(
             if(status)
                 imageView.visibility = View.VISIBLE
             else
-                imageView.visibility = View.INVISIBLE
+                imageView.visibility = View.GONE
         }
     }
 }

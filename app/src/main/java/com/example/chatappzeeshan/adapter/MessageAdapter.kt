@@ -12,6 +12,8 @@ import com.example.chatappzeeshan.modal.Chat
 import com.example.chatappzeeshan.modal.UsersData
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MessageAdapter(
     options: FirestoreRecyclerOptions<Chat>,
@@ -51,8 +53,28 @@ class MessageAdapter(
         val dao = UserDao()
         val currentUser = dao.getCurrentUser()
 
-        Log.d("check1", "onBindViewHolder: ${currentUser.userName}")
-        holder.msgTextView.text = model.message
+        if (model.sender?.userId.equals(currentUser.userId) && model.receiver?.userId.equals(
+                receiverUser.userId
+            ) ||
+            model.receiver?.userId.equals(currentUser.userId) && model.sender?.userId.equals(
+                receiverUser.userId
+            )
+        ) {
+            holder.msgTextView.text = model.message
+            // Formatting Time
+            val simpleFormatter = SimpleDateFormat("MMM d, yyyy")   //   MMM d, h:mm a
+            val formattedTime: String = simpleFormatter.format(Date(model.timeStamp))
+            holder.timeStamp.text = formattedTime
+        } else {
+            holder.msgTextView.visibility = View.GONE
+            holder.timeStamp.visibility = View.GONE
+            holder.msgTextView.layoutParams.height = 0
+            holder.timeStamp.layoutParams.height = 0
+
+//            holder.msgRootLayout.visibility = View.GONE
+//            holder.msgRootLayout.layoutParams.height = 0
+            return
+        }
 
 //        if (model.sender?.userId.equals(currentUser.userId) && model.receiver?.userId.equals(receiverUser.userId) ||
 //            model.receiver?.userId.equals(currentUser.userId) && model.sender?.userId.equals(receiverUser.userId)
@@ -73,35 +95,15 @@ class MessageAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val msgTextView = itemView.findViewById<TextView>(R.id.msg_text_view)
+        val timeStamp = itemView.findViewById<TextView>(R.id.time_stamp)
+//        val msgRootLayout = itemView.findViewById<TextView>(R.id.msg_root_layout)
     }
 
     override fun getItemViewType(position: Int): Int {
         val userDao = UserDao()
-        Log.d("check", "getItemViewType: ${userDao.getCurrentUser().userName}")
         return if (userDao.getCurrentUser().userId.equals(getItem(position).sender?.userId)) MSG_TYPE_RIGHT else MSG_TYPE_LEFT
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //

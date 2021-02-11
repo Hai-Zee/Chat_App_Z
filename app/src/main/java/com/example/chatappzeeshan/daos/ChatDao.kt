@@ -21,9 +21,12 @@ class ChatDao {
         currentTimeMillis: Long
     ) {
 
-        val chat = Chat(currentUser, receiverUser, message, currentTimeMillis.toString())
+        val chat = Chat(currentUser, receiverUser, message, currentTimeMillis)
         CoroutineScope(Dispatchers.IO).launch {
             chatCollection.document().set(chat)
+
+            // setting friends status to offline, because i don't want status functionality in chats fragments
+            receiverUser.status = false
 
             chatListCollection.document(userDao.getCurrentUser().userId)
                 .collection("MyFriends")
