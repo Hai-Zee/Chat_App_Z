@@ -4,5 +4,5 @@ class Chat(
     var sender: UsersData? = null,
     var receiver: UsersData? = null,
     var message: String = "",
-    val timeStamp: Long = 0L
+    val timeStamp: String = ""
 )

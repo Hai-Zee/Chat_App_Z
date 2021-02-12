@@ -59,7 +59,6 @@ class ChatFragment : Fragment(), UsersAdapter.UsersItemListener {
         })
     }
 
-
     override fun onStop() {
         super.onStop()
         usersAdapter.stopListening()

@@ -63,7 +63,7 @@ class MessageAdapter(
             holder.msgTextView.text = model.message
             // Formatting Time
             val simpleFormatter = SimpleDateFormat("MMM d, yyyy")   //   MMM d, h:mm a
-            val formattedTime: String = simpleFormatter.format(Date(model.timeStamp))
+            val formattedTime: String = simpleFormatter.format(Date(model.timeStamp.toLong()))
             holder.timeStamp.text = formattedTime
         } else {
             holder.msgTextView.visibility = View.GONE
@@ -101,7 +101,7 @@ class MessageAdapter(
 
     override fun getItemViewType(position: Int): Int {
         val userDao = UserDao()
-        return if (userDao.getCurrentUser().userId.equals(getItem(position).sender?.userId)) MSG_TYPE_RIGHT else MSG_TYPE_LEFT
+        return if (userDao.getCurrentUser().userId == getItem(position).sender?.userId) MSG_TYPE_RIGHT else MSG_TYPE_LEFT
     }
 }
 

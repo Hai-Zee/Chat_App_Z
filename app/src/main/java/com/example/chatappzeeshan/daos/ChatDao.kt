@@ -18,7 +18,7 @@ class ChatDao {
         currentUser: UsersData,
         receiverUser: UsersData,
         message: String,
-        currentTimeMillis: Long
+        currentTimeMillis: String
     ) {
 
         val chat = Chat(currentUser, receiverUser, message, currentTimeMillis)

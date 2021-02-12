@@ -74,7 +74,7 @@ class MainViewFragment : Fragment() {
             return fragmentList[position]
         }
 
-        override fun getPageTitle(position: Int): CharSequence? {
+        override fun getPageTitle(position: Int): CharSequence {
             return titleList[position]
         }
 
@@ -83,39 +83,5 @@ class MainViewFragment : Fragment() {
             titleList.add(title)
         }
     }
-
-
-//    override fun onStart() {
-//        super.onStart()
-//
-//        userDao.userCollection
-//            .document(userDao.getCurrentUser().userId)
-//            .update("status", true)
-//    }
-//
-//
-//    override fun onResume() {
-//        super.onResume()
-//
-//        userDao.userCollection
-//            .document(userDao.getCurrentUser().userId)
-//            .update("status", true)
-//    }
-//
-//    override fun onPause() {
-//        super.onPause()
-//
-//        userDao.userCollection
-//            .document(userDao.getCurrentUser().userId)
-//            .update("status", false)
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//
-//        userDao.userCollection
-//            .document(userDao.getCurrentUser().userId)
-//            .update("status", false)
-//    }
 
 }

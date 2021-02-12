@@ -20,13 +20,14 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(activityMainBinding.root)
 
-        userDao = UserDao()
     }
 
     override fun onStart() {
         super.onStart()
 
         if (Firebase.auth.currentUser != null) {
+            userDao = UserDao()
+
             userDao.userCollection
                 .document(userDao.getCurrentUser().userId)
                 .update("status", true)
@@ -35,9 +36,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-
-        userDao.userCollection
-            .document(userDao.getCurrentUser().userId)
-            .update("status", false)
+        if (Firebase.auth.currentUser != null) {
+            userDao = UserDao()
+            userDao.userCollection
+                .document(userDao.getCurrentUser().userId)
+                .update("status", false)
+        }
     }
 }

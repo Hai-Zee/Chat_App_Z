@@ -57,7 +57,6 @@ class MessegeFragment : Fragment() {
         fragmentMessegeBinding.messageRecyclerView.setHasFixedSize(true)
 
         clickListeners()
-
     }
 
     private fun clickListeners() {
@@ -75,7 +74,7 @@ class MessegeFragment : Fragment() {
                 fragmentMessegeBinding.typeMessage.error = null
                 fragmentMessegeBinding.typeMessage.text.clear()
                 // Sending Message
-                chatDao.sendMessage(currentUser, receiverUser, message, System.currentTimeMillis())
+                chatDao.sendMessage(currentUser, receiverUser, message, System.currentTimeMillis().toString())
             } else {
                 fragmentMessegeBinding.typeMessage.error = "Required"
             }
@@ -97,7 +96,7 @@ class MessegeFragment : Fragment() {
             messageAdapter = MessageAdapter(it, receiverUser)
             messageAdapter.startListening()
             fragmentMessegeBinding.messageRecyclerView.adapter = messageAdapter
-            fragmentMessegeBinding.messageRecyclerView.scrollToPosition(messageAdapter.itemCount-1)
+
         })
     }
 
